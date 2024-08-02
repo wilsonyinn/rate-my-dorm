@@ -1,10 +1,8 @@
-import React from "react";
-import logo from "./logo.svg";
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
-import "./App.css";
 import Review from "./components/Review";
 import AddReview from "./components/AddReview";
+import styles from "./styles/app.module.css";
 
 function App() {
   interface ReviewData {
@@ -84,27 +82,26 @@ function App() {
         datePosted={val.datePosted}
         rating={val.rating}
         review={val.review}
+        numLikes={val.numLikes}
         key={uuidv4()}
       />
     );
   });
 
   return (
-    <div className="App">
-      <header className="App-header">
-        {addReviewPage ? (
-          <AddReview
-            updateReviews={updateReviews}
-            closeAddReviewPage={closeAddReviewPage}
-          />
-        ) : (
-          <div>
-            <button onClick={openAddReviewPage}>Add Review</button>
-            <h1>Manzanita Square</h1>
-            {reviews}
-          </div>
-        )}
-      </header>
+    <div className={styles.app}>
+      {addReviewPage ? (
+        <AddReview
+          updateReviews={updateReviews}
+          closeAddReviewPage={closeAddReviewPage}
+        />
+      ) : (
+        <div className={styles.container}>
+          <button onClick={openAddReviewPage}>Add Review</button>
+          <h1 className={styles.dorm}>Manzanita Square</h1>
+          {reviews}
+        </div>
+      )}
     </div>
   );
 }
