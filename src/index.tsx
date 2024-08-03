@@ -1,13 +1,31 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ErrorPage from "./pages/ErrorPage";
+import DormPage from "./pages/DormPage";
+import LandingPage from "./pages/LandingPage";
+import dummyData from "./dummy.json";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <LandingPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/manzanita-square",
+    element: <DormPage dormName="Manzanita Square" reviewData={dummyData} />,
+  },
+  {
+    path: "/university-park-north",
+    element: (
+      <DormPage dormName="University Park North" reviewData={dummyData} />
+    ),
+  },
+  {
+    path: "/towers",
+    element: <DormPage dormName="Towers" reviewData={dummyData} />,
   },
 ]);
 

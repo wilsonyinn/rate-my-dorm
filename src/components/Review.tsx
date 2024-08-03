@@ -16,6 +16,7 @@ const Review: FC<ReviewProps> = ({
   review,
   numLikes,
 }) => {
+  //convert millisecond date to readable data format
   const date = new Date(datePosted);
 
   const options: Intl.DateTimeFormatOptions = {
