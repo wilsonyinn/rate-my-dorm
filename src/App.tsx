@@ -97,8 +97,8 @@ function App() {
         />
       ) : (
         <div className={styles.container}>
-          <button onClick={openAddReviewPage}>Add Review</button>
           <h1 className={styles.dorm}>Manzanita Square</h1>
+          <button onClick={openAddReviewPage}>Add Review</button>
           {reviews}
         </div>
       )}

@@ -33,7 +33,7 @@ const Review: FC<ReviewProps> = ({
         <p className={styles.date}>{formattedDate}</p>
       </div>
       <p className={styles.review}>{review}</p>
-      <p className={styles.upvotesRow}>Likes: {numLikes}</p>
+      <p className={styles.upvotesRow}>{numLikes}👍 &nbsp; 2👎</p>
     </div>
   );
 };
