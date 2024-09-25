@@ -7,15 +7,6 @@ import DormPage from "./pages/DormPage";
 import LandingPage from "./pages/LandingPage";
 import dummyData from "./dummy.json";
 
-//add
-// West Grove Common
-//Mary Park Hall
-// Mary Ward Hall
-// Towers Junior Suites
-// Towers at Centennial Square
-// Village at Centennial Square
-// University Park South
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,35 +19,48 @@ const router = createBrowserRouter([
   },
   {
     path: "/university-park-north",
-    element: <DormPage dormName="University Park North" reviewData={dummyData} />,
+    element: (
+      <DormPage dormName="University Park North" reviewData={dummyData} />
+    ),
   },
   {
     path: "/towers-at-centennial-square",
-    element: <DormPage dormName="Towers At Centennial Square" reviewData={dummyData} />,
+    element: (
+      <DormPage dormName="Towers At Centennial Square" reviewData={dummyData} />
+    ),
   },
   {
     path: "/university-park-south",
-    element: <DormPage dormName="University Park South" reviewData={dummyData} />,
+    element: (
+      <DormPage dormName="University Park South" reviewData={dummyData} />
+    ),
   },
   {
     path: "/village-at-centennial-square",
-    element:<DormPage dormName="Village At Centennial Ssquare" reviewData={dummyData}/>,
+    element: (
+      <DormPage
+        dormName="Village At Centennial Ssquare"
+        reviewData={dummyData}
+      />
+    ),
   },
   {
     path: "/towers-at-junior-suites",
-    element: <DormPage dormName="Towers At Junior Suites" reviewData={dummyData}/>,
+    element: (
+      <DormPage dormName="Towers At Junior Suites" reviewData={dummyData} />
+    ),
   },
   {
     path: "/mary-ward-hall",
-    element: <DormPage dormName="Mary Ward Hall" reviewData={dummyData}/>,
+    element: <DormPage dormName="Mary Ward Hall" reviewData={dummyData} />,
   },
   {
     path: "/mary-park-hall",
-    element: <DormPage dormName="Mary Park Hall" reviewData={dummyData}/>,
+    element: <DormPage dormName="Mary Park Hall" reviewData={dummyData} />,
   },
   {
     path: "/west-grove-common",
-    element: <DormPage dormName="West Grove Common" reviewData={dummyData}/>,
+    element: <DormPage dormName="West Grove Common" reviewData={dummyData} />,
   },
 ]);
 

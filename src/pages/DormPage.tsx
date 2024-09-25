@@ -48,6 +48,7 @@ const DormPage: FC<DormPageData> = ({ dormName, reviewData }) => {
       />
     );
   });
+  
   return (
     <div className={styles.app}>
       {addReviewPage ? (
