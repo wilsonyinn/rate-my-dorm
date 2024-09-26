@@ -17,51 +17,51 @@ const router = createBrowserRouter([
     path: "/manzanita-square",
     element: <DormPage dormName="Manzanita Square" reviewData={dummyData} />,
   },
-  // {
-  //   path: "/university-park-north",
-  //   element: (
-  //     <DormPage dormName="University Park North" reviewData={dummyData} />
-  //   ),
-  // },
-  // {
-  //   path: "/towers-at-centennial-square",
-  //   element: (
-  //     <DormPage dormName="Towers At Centennial Square" reviewData={dummyData} />
-  //   ),
-  // },
-  // {
-  //   path: "/university-park-south",
-  //   element: (
-  //     <DormPage dormName="University Park South" reviewData={dummyData} />
-  //   ),
-  // },
-  // {
-  //   path: "/village-at-centennial-square",
-  //   element: (
-  //     <DormPage
-  //       dormName="Village At Centennial Ssquare"
-  //       reviewData={dummyData}
-  //     />
-  //   ),
-  // },
-  // {
-  //   path: "/towers-at-junior-suites",
-  //   element: (
-  //     <DormPage dormName="Towers At Junior Suites" reviewData={dummyData} />
-  //   ),
-  // },
-  // {
-  //   path: "/mary-ward-hall",
-  //   element: <DormPage dormName="Mary Ward Hall" reviewData={dummyData} />,
-  // },
-  // {
-  //   path: "/mary-park-hall",
-  //   element: <DormPage dormName="Mary Park Hall" reviewData={dummyData} />,
-  // },
-  // {
-  //   path: "/west-grove-common",
-  //   element: <DormPage dormName="West Grove Common" reviewData={dummyData} />,
-  // },
+  {
+    path: "/university-park-north",
+    element: (
+      <DormPage dormName="University Park North" reviewData={dummyData} />
+    ),
+  },
+  {
+    path: "/towers-at-centennial-square",
+    element: (
+      <DormPage dormName="Towers At Centennial Square" reviewData={dummyData} />
+    ),
+  },
+  {
+    path: "/university-park-south",
+    element: (
+      <DormPage dormName="University Park South" reviewData={dummyData} />
+    ),
+  },
+  {
+    path: "/village-at-centennial-square",
+    element: (
+      <DormPage
+        dormName="Village At Centennial Ssquare"
+        reviewData={dummyData}
+      />
+    ),
+  },
+  {
+    path: "/towers-at-junior-suites",
+    element: (
+      <DormPage dormName="Towers At Junior Suites" reviewData={dummyData} />
+    ),
+  },
+  {
+    path: "/mary-ward-hall",
+    element: <DormPage dormName="Mary Ward Hall" reviewData={dummyData} />,
+  },
+  {
+    path: "/mary-park-hall",
+    element: <DormPage dormName="Mary Park Hall" reviewData={dummyData} />,
+  },
+  {
+    path: "/west-grove-common",
+    element: <DormPage dormName="West Grove Common" reviewData={dummyData} />,
+  },
 ]);
 
 const root = ReactDOM.createRoot(

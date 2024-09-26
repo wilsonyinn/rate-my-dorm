@@ -12,8 +12,22 @@ body {
 }
 
 .nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   min-width: 100%;
-  height: 47px;
+  height: 80px;
+}
+
+.nav .logo {
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.nav .login {
+  height: 60%;
+  margin-right: 20px;
 }
 
 .banner {
@@ -35,10 +49,45 @@ body {
   font-size: 2.3em;
 }
 
+.reviewsTableHeader {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Inter", system-ui;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.reviewsTableHeader p {
+  margin-left: 105px;
+  font-size: 1.15rem;
+}
+
+.reviewsTableHeader .writeReview {
+  margin-right: 105px;
+}
+
 .reviewsTable {
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 90%;
   align-items: center;
+}
+
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 85px;
+  background-color: #f3f4f6;
+  font-family: "Inter", system-ui;
+  font-optical-sizing: auto;
+  font-style: normal;
+  gap: 30px;
 }

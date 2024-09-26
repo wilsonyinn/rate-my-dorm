@@ -2,7 +2,8 @@ import React, { useState, FC } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styles from "../styles/dormpage.module.css";
 import Review from "../components/Review";
-
+import HouseIcon from "@mui/icons-material/House";
+import Button from "@mui/material/Button";
 
 interface ReviewData {
   name: string;
@@ -33,12 +34,27 @@ const DormPage: FC<DormPageData> = ({ dormName, reviewData }) => {
   });
   return (
     <div className={styles.container}>
-      <nav className={styles.nav}>Nav Bar</nav>
+      <nav className={styles.nav}>
+        <HouseIcon className={styles.logo} sx={{ fontSize: 60 }}></HouseIcon>
+        <Button className={styles.login} variant="contained">
+          Log In
+        </Button>
+      </nav>
       <div className={styles.banner}>
         <h1 className={styles.bannerText}>{dormName}</h1>
       </div>
+      <div className={styles.reviewsTableHeader}>
+        <p>Recent Reviews</p>
+        <Button className={styles.writeReview} variant="contained">
+          Write Review
+        </Button>
+      </div>
       <div className={styles.reviewsTable}>{reviews}</div>
-      <footer>Footer that we dont have yet</footer>
+      <footer>
+        <span className={styles.home}>Home</span>
+        <span className={styles.about}>About</span>
+        <span className={styles.contact}>Contact Us</span>
+      </footer>
     </div>
   );
 };
