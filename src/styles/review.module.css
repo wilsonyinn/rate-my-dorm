@@ -1,37 +1,73 @@
-.reviewCard {
-  font-family: "Roboto", sans-serif;
-  font-style: normal;
+.reviewContainer {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: flex-start;
-  background-color: #f7f7f7;
-  margin: 1rem;
-  padding: 3rem 4rem;
   width: 100%;
 }
 
-.title {
+.nameAndDate {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-grow: 1;
+  font-weight: 300;
+  font-size: 0.75rem;
+  width: 25%;
+}
+
+.nameAndDate .name {
+  font-family: "Inter", system-ui;
+  font-optical-sizing: auto;
+  font-style: normal;
   font-weight: 500;
-  font-size: 2rem;
+  margin: 40px 0px 40px 35px;
+}
+
+.nameAndDate .date {
+  font-family: "Inter", system-ui;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 300;
+  margin: 10px 0px 40px 35px;
+}
+
+.rating {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-grow: 1;
+  font-family: "Inter", system-ui;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 0.8rem;
+  width: 25%;
+  margin: 40px 0px 40px 35px;
 }
 
 .review {
-  font-weight: 500;
-  font-size: 1.4rem;
-}
-
-.ratingAndDateRow {
-  font-weight: 500;
-  font-size: 1.2rem;
+  font-family: "Inter", system-ui;
+  font-optical-sizing: auto;
+  font-style: normal;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-grow: 2;
+  font-weight: 500;
+  font-size: 0.75rem;
+  width: 50%;
+  margin: 40px 0px 0px 35px;
 }
 
-.upvotesRow {
-  align-self: flex-end;
+.review h3 {
   font-weight: 500;
-  font-size: 1.2rem;
+  margin-top: 0px;
+}
+
+.review p {
+  font-weight: 300;
 }

@@ -1,20 +1,23 @@
 import React from "react";
 import { FC } from "react";
 import styles from "../styles/review.module.css";
+import Rating from "@mui/material/Rating";
+import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
 
 interface ReviewProps {
-  title: string;
+  name: string;
   datePosted: number;
   rating: number;
+  reviewTitle: string;
   review: string;
-  numLikes: number;
 }
 const Review: FC<ReviewProps> = ({
-  title,
+  name,
   datePosted,
   rating,
+  reviewTitle,
   review,
-  numLikes,
 }) => {
   //convert millisecond date to readable data format
   const date = new Date(datePosted);
@@ -27,15 +30,25 @@ const Review: FC<ReviewProps> = ({
   const formattedDate = date.toLocaleDateString("en-US", options);
 
   return (
-    <div className={styles.reviewCard}>
-      <h2 className={styles.title}>{title}</h2>
-      <div className={styles.ratingAndDateRow}>
-        <p className={styles.rating}>Rating: {rating}/5</p>
-        <p className={styles.date}>{formattedDate}</p>
+    <>
+      <Divider flexItem></Divider>
+      <div className={styles.reviewContainer}>
+        <h2 className={styles.nameAndDate}>
+          <h3 className={styles.name}>{name}</h3>
+          <h3 className={styles.date}>{formattedDate}</h3>
+        </h2>
+        <div className={styles.rating}>
+          <Box sx={{ width: 200, display: "flex", alignItems: "center" }}>
+            <Rating name="read-only" value={rating} precision={0.1} readOnly />
+            <Box sx={{ ml: 2 }}>{rating}</Box>
+          </Box>
+        </div>
+        <p className={styles.review}>
+          <h3>{reviewTitle}</h3>
+          <p>{review}</p>
+        </p>
       </div>
-      <p className={styles.review}>{review}</p>
-      <p className={styles.upvotesRow}>{numLikes}👍 &nbsp; 2👎</p>
-    </div>
+    </>
   );
 };
 

@@ -1,69 +1,46 @@
+import React, { useState, FC } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { useState } from "react";
+import styles from "../styles/dormpage.module.css";
 import Review from "../components/Review";
-import AddReview from "../components/AddReview";
-import styles from "../styles/app.module.css";
-import { FC } from "react";
+
 
 interface ReviewData {
-  title: string;
+  name: string;
   datePosted: number;
   rating: number;
+  reviewTitle: string;
   review: string;
-  numLikes: number;
 }
 
 interface DormPageData {
   dormName: string;
   reviewData: ReviewData[];
 }
-
 const DormPage: FC<DormPageData> = ({ dormName, reviewData }) => {
-  const [data, setData] = useState<ReviewData[]>(reviewData);
-  const [addReviewPage, setAddReviewPage] = useState<boolean>(false);
-
-  // Changes to review page
-  function openAddReviewPage() {
-    setAddReviewPage(true); // change later
-  }
-
-  // helper for updating review data
-  function updateReviews(newReview: ReviewData): void {
-    setData([...data, newReview]);
-  }
-
-  function closeAddReviewPage(): void {
-    setAddReviewPage(false);
-  }
+  const [data, setData] = useState(reviewData);
 
   const reviews = data.map((val) => {
     return (
       <Review
-        title={val.title}
+        name={val.name}
         datePosted={val.datePosted}
         rating={val.rating}
+        reviewTitle={val.reviewTitle}
         review={val.review}
-        numLikes={val.numLikes}
         key={uuidv4()}
       />
     );
   });
-  
   return (
-    <div className={styles.app}>
-      {addReviewPage ? (
-        <AddReview
-          updateReviews={updateReviews}
-          closeAddReviewPage={closeAddReviewPage}
-        />
-      ) : (
-        <div className={styles.container}>
-          <h1 className={styles.dorm}>{dormName}</h1>
-          <button onClick={openAddReviewPage}>Add Review</button>
-          {reviews}
-        </div>
-      )}
+    <div className={styles.container}>
+      <nav className={styles.nav}>Nav Bar</nav>
+      <div className={styles.banner}>
+        <h1 className={styles.bannerText}>{dormName}</h1>
+      </div>
+      <div className={styles.reviewsTable}>{reviews}</div>
+      <footer>Footer that we dont have yet</footer>
     </div>
   );
 };
+
 export default DormPage;
