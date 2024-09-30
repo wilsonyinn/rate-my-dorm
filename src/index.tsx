@@ -6,12 +6,17 @@ import ErrorPage from "./pages/ErrorPage";
 import DormPage from "./pages/DormPage";
 import LandingPage from "./pages/LandingPage";
 import dummyData from "./dummy.json";
+import SignInPage from "./pages/SignInPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <LandingPage />,
     errorElement: <ErrorPage />,
+  },
+  {
+    path: "/signin",
+    element: <SignInPage />,
   },
   {
     path: "/manzanita-square",

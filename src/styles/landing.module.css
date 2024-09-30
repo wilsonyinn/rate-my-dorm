@@ -14,6 +14,18 @@
   margin-bottom: 35px;
 }
 
+.landingBanner p {
+  font-family: "Inter", system-ui;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color: white;
+  font-size: 2rem;
+  font-weight: 500;
+  text-align: center;
+  position: relative;
+  top: 90px;
+}
+
 .link {
   text-decoration: none;
 }
