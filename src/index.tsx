@@ -70,7 +70,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/write-review",
-    element: <WriteReview dormName="I NEED TO FIX" />,
+    element: <WriteReview dormName="Manzanita Square" />,
   },
 ]);
 

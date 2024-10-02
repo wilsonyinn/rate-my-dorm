@@ -30,13 +30,6 @@ body {
   margin-right: 20px;
 }
 
-.banner {
-  background: url(../assets/manzanita_banner.jpg) center no-repeat;
-  background-size: 100%;
-  width: 100%;
-  min-height: 349px;
-}
-
 .bannerText {
   position: relative;
   left: 60px;
