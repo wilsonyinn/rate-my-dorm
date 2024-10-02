@@ -69,8 +69,40 @@ const router = createBrowserRouter([
     element: <DormPage dormName="West Grove Common" reviewData={dummyData} />,
   },
   {
-    path: "/write-review",
+    path: "/write-review/manzanita-square",
     element: <WriteReview dormName="Manzanita Square" />,
+  },
+  {
+    path: "/write-review/mary-park-hall",
+    element: <WriteReview dormName="Mary Park Hall" />,
+  },
+  {
+    path: "/write-review/mary-ward-hall",
+    element: <WriteReview dormName="Mary Ward Hall" />,
+  },
+  {
+    path: "/write-review/towers-at-centennial-square",
+    element: <WriteReview dormName="Towers At Centennial Square" />,
+  },
+  {
+    path: "/write-review/university-park-south",
+    element: <WriteReview dormName="University Park South" />,
+  },
+  {
+    path: "/write-review/university-park-north",
+    element: <WriteReview dormName="University Park North" />,
+  },
+  {
+    path: "/write-review/west-grove-common",
+    element: <WriteReview dormName="West Grove Common" />,
+  },
+  {
+    path: "/write-review/towers-at-junior-suites",
+    element: <WriteReview dormName="Towers At Junior Suites" />,
+  },
+  {
+    path: "/write-review/village-at-centennial-square",
+    element: <WriteReview dormName="Village At Centennial Square" />,
   },
 ]);
 

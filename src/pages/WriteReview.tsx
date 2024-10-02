@@ -1,12 +1,14 @@
 import React, { FC } from "react";
 import Nav from "../components/Nav";
 import Banner from "../components/Banner";
+import Footer from "../components/Footer";
 import { useRef } from "react";
 import styles from "../styles/write-review.module.css";
 
 import Rating from "@mui/material/Rating";
 import Box from "@mui/material/Box";
 import StarIcon from "@mui/icons-material/Star";
+import Button from "@mui/material/Button";
 
 const labels: { [index: string]: string } = {
   0.5: "0.5",
@@ -33,8 +35,15 @@ const WriteReview: FC<WriteReviewProps> = (props) => {
   const [value, setValue] = React.useState<number | null>(2);
   const [hover, setHover] = React.useState(-1);
   const titleRef = useRef<HTMLInputElement | null>(null);
-  const ratingRef = useRef<HTMLInputElement | null>(null);
-  const reviewRef = useRef<HTMLInputElement | null>(null);
+  const reviewRef = useRef<HTMLTextAreaElement | null>(null);
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    console.log(value);
+    console.log(titleRef.current?.value);
+    console.log(reviewRef.current?.value);
+    alert("Successfully Submitted - Redirect to Reviews Page");
+  }
 
   return (
     <div className={styles.container}>
@@ -43,7 +52,7 @@ const WriteReview: FC<WriteReviewProps> = (props) => {
         dormName={props.dormName}
         bannerText={`Review ${props.dormName}`}
       />
-      <form>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <h2 className={styles.reviewTitle}>Review Title</h2>
         <input
           className={styles.reviewTitleInput}
@@ -76,9 +85,14 @@ const WriteReview: FC<WriteReviewProps> = (props) => {
         <textarea
           className={styles.reviewCommentInput}
           placeholder="Write a helpful review..."
+          ref={reviewRef}
           maxLength={500}
         />
+        <Button className={styles.submit} variant="contained" type="submit">
+          Submit
+        </Button>
       </form>
+      <Footer />
     </div>
   );
 };

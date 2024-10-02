@@ -48,6 +48,7 @@
   font-family: "Inter", system-ui;
   font-optical-sizing: auto;
   padding: 6px 0px 0px 6px;
+  margin-bottom: 20px;
 }
 
 .rating {
@@ -56,4 +57,16 @@
   justify-content: flex-start;
   align-items: center;
   margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  margin: 20px 0px 20px 0px;
+}
+
+.submit {
+  align-self: flex-end;
 }
