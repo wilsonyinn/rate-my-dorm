@@ -7,6 +7,7 @@ import DormPage from "./pages/DormPage";
 import LandingPage from "./pages/LandingPage";
 import dummyData from "./dummy.json";
 import SignInPage from "./pages/SignInPage";
+import WriteReview from "./pages/WriteReview";
 
 const router = createBrowserRouter([
   {
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
     path: "/village-at-centennial-square",
     element: (
       <DormPage
-        dormName="Village At Centennial Ssquare"
+        dormName="Village At Centennial Square"
         reviewData={dummyData}
       />
     ),
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
   {
     path: "/west-grove-common",
     element: <DormPage dormName="West Grove Common" reviewData={dummyData} />,
+  },
+  {
+    path: "/write-review",
+    element: <WriteReview dormName="I NEED TO FIX" />,
   },
 ]);
 

@@ -2,10 +2,15 @@ import React from "react";
 import styles from "../styles/landing.module.css";
 import { Link } from "react-router-dom";
 
+//material ui components
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 
+//components
+import Footer from "../components/Footer";
+
+//assets
 import MZSQ from "../assets/manzanita_banner.jpg";
 import MPW from "../assets/mary-park-hall.jpg";
 import MWH from "../assets/mary-ward-hall.jpg";
@@ -76,6 +81,7 @@ const LandingPage = () => {
         <p>San Francisco State University Dorm Reviews</p>
       </div>
       <div className={styles.grid}>{dormGrid}</div>
+      <Footer />
     </div>
   );
 };
