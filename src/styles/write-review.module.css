@@ -1,0 +1,59 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: "Inter", system-ui;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.reviewTitle {
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin: 5px 0px 5px 0px;
+}
+.reviewTitleInput {
+  width: 35vw;
+  height: 30px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  border: none;
+  border: solid 1px #8b8b8b;
+  padding-left: 6px;
+  margin-bottom: 20px;
+}
+
+.reviewRating {
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin: 5px 0px 5px 0px;
+}
+
+.reviewComment {
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin: 5px 0px 5px 0px;
+}
+
+.reviewCommentInput {
+  width: 35vw;
+  height: 120px;
+  font-size: 0.9rem;
+  border: none;
+  border: solid 1px #8b8b8b;
+  border-radius: 5px;
+  resize: none;
+  align-items: center;
+  font-family: "Inter", system-ui;
+  font-optical-sizing: auto;
+  padding: 6px 0px 0px 6px;
+}
+
+.rating {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+}
