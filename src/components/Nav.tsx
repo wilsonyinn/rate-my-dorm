@@ -1,18 +1,19 @@
 import React from "react";
-import styles from "../styles/dormpage.module.css";
+import styles from "../styles/nav.module.css";
 import HouseIcon from "@mui/icons-material/House";
 import Button from "@mui/material/Button";
-
-function handleLogInRouting() {
-  // ** IMPLEMENT **
-  alert("reroute to login");
-}
-
-function handleHomeRouting() {
-  alert("reroute to home");
-}
+import { useNavigate } from "react-router-dom";
 
 const Nav = () => {
+  const navigate = useNavigate();
+
+  function handleLogInRouting() {
+    navigate("/sign-in");
+  }
+
+  function handleHomeRouting() {
+    navigate("/");
+  }
   return (
     <nav className={styles.nav}>
       <HouseIcon

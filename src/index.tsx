@@ -8,6 +8,7 @@ import LandingPage from "./pages/LandingPage";
 import dummyData from "./dummy.json";
 import SignInPage from "./pages/SignInPage";
 import WriteReview from "./pages/WriteReview";
+import AboutUs from "./pages/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -103,6 +104,10 @@ const router = createBrowserRouter([
   {
     path: "/write-review/village-at-centennial-square",
     element: <WriteReview dormName="Village At Centennial Square" />,
+  },
+  {
+    path: "/about-us",
+    element: <AboutUs />,
   },
 ]);
 
