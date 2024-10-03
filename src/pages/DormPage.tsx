@@ -1,4 +1,5 @@
 import React, { useState, FC } from "react";
+import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import styles from "../styles/dormpage.module.css";
 import Review from "../components/Review";
@@ -41,14 +42,13 @@ interface DormPageData {
   reviewData: ReviewData[];
 }
 
-function handleWriteReviewRouting() {
-  // ** IMPLEMENT **
-  alert("reroute");
-}
-
 const DormPage: FC<DormPageData> = ({ dormName, reviewData }) => {
   const [data, setData] = useState(reviewData);
-  console.log(dormBanners[dormName]);
+  const navigate = useNavigate();
+
+  function handleWriteReviewRouting() {
+    navigate("/write-review", { state: { dormName: dormName } });
+  }
 
   const reviews = data.map((val) => {
     return (

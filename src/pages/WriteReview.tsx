@@ -1,9 +1,10 @@
-import React, { FC } from "react";
+import React, { useState, FC, useEffect } from "react";
 import Nav from "../components/Nav";
 import Banner from "../components/Banner";
 import Footer from "../components/Footer";
 import { useRef } from "react";
 import styles from "../styles/write-review.module.css";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import Rating from "@mui/material/Rating";
 import Box from "@mui/material/Box";
@@ -27,15 +28,22 @@ function getLabelText(value: number) {
   return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
 }
 
-interface WriteReviewProps {
-  dormName: string;
-}
-
-const WriteReview: FC<WriteReviewProps> = (props) => {
-  const [value, setValue] = React.useState<number | null>(2);
-  const [hover, setHover] = React.useState(-1);
+const WriteReview: FC = () => {
+  const [value, setValue] = useState<number | null>(2);
+  const [hover, setHover] = useState(-1);
+  const [dormName, setDormName] = useState("Hello");
   const titleRef = useRef<HTMLInputElement | null>(null);
   const reviewRef = useRef<HTMLTextAreaElement | null>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.state && location.state.dormName) {
+      setDormName(location.state.dormName);
+    } else {
+      navigate("/");
+    }
+  }, []);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -48,10 +56,7 @@ const WriteReview: FC<WriteReviewProps> = (props) => {
   return (
     <div className={styles.container}>
       <Nav />
-      <Banner
-        dormName={props.dormName}
-        bannerText={`Review ${props.dormName}`}
-      />
+      <Banner dormName={dormName} bannerText={`Review ${dormName}`} />
       <form className={styles.form} onSubmit={handleSubmit}>
         <h2 className={styles.reviewTitle}>Review Title</h2>
         <input
