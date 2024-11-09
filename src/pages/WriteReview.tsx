@@ -154,7 +154,8 @@ const WriteReview: FC = () => {
         <h3>SFSU Account</h3>
         <input type="text" placeholder="jdoe45" />
         <h3>Code</h3>
-        <input type="text" placeholder="12345" />
+        <input className={styles.code} type="text" placeholder="12345" />
+        <Divider flexItem></Divider>
 
         <Button className={styles.submit} variant="contained" type="submit">
           Submit

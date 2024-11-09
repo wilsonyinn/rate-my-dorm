@@ -88,6 +88,10 @@ select {
 }
 
 .submit {
-  margin: 15px 0px 0px 0px;
+  margin: 25git px 0px 0px 0px;
   align-self: flex-end;
+}
+
+.code {
+  margin-bottom: 20px;
 }
