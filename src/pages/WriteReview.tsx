@@ -35,7 +35,10 @@ const WriteReview: FC = () => {
   const [dormName, setDormName] = useState("Hello");
   const titleRef = useRef<HTMLInputElement | null>(null);
   const reviewRef = useRef<HTMLTextAreaElement | null>(null);
-  const dormRef = useRef<HTMLInputElement | null>(null);
+  const dormRef = useRef<HTMLSelectElement | null>(null);
+  const semesterRef = useRef<HTMLSelectElement | null>(null);
+  const sfsuAccountRef = useRef<HTMLInputElement | null>(null);
+  const codeRef = useRef<HTMLInputElement | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -47,18 +50,43 @@ const WriteReview: FC = () => {
   //   }
   // }, []);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    console.log(value);
-    console.log(titleRef.current?.value);
-    console.log(reviewRef.current?.value);
-    alert("Successfully Submitted - Redirect to Reviews Page");
+    const generatedCode = "54321";
+    
+    const formData = {
+      dormName: dormRef.current?.value,
+      semester: semesterRef.current?.value,
+      reviewTitle: titleRef.current?.value,
+      reviewRating: {value},
+      reviewComment: reviewRef.current?.value,
+      //dont need these
+      // email: sfsuAccountRef.current?.value,
+      // code: codeRef.current?.value
+    }
+    try {
+      const response = await fetch('https://api.example.com/reviews', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit review');
+      }
+
+      const result = await response.json();
+      // setResponseMessage('Review submitted successfully!');
+    } catch (error) {
+      // setError(error.message);
+    }
   }
 
   return (
     <div className={styles.container}>
       <Nav />
-      {/* <Banner dormName={dormName} bannerText={`Review ${dormName}`} /> */}
       <form className={styles.form} onSubmit={handleSubmit}>
         <h1 className={styles.formTitle}>Add a Review</h1>
         <Divider flexItem></Divider>
@@ -66,7 +94,7 @@ const WriteReview: FC = () => {
         <p>Let's gather some details about your dorm.</p>
         <h3 className={styles.reviewDorm}>Dorm Name</h3>
         <p>Select the dorm you lived in.</p>
-        <select className={styles.reviewDormSelect}>
+        <select ref={dormRef} className={styles.reviewDormSelect}>
           <option value="">--Select your dorm--</option>
           <option value="manzanita-square">Manzanita Square</option>
           <option value="mary-park-hall">Mary Park Hall</option>
@@ -87,7 +115,7 @@ const WriteReview: FC = () => {
 
         <h3>Semester</h3>
         <p>When did you live in this dorm?</p>
-        <select className={styles.semester}>
+        <select ref={semesterRef} className={styles.semester}>
           <option value="">--Select your semester--</option>
           <option value="fall-2024">Fall 2024</option>
           <option value="summer-2024">Summer 2024</option>
@@ -112,15 +140,15 @@ const WriteReview: FC = () => {
 
         <Divider flexItem></Divider>
         <h2>Review</h2>
-        <p>Talk about your personal experience with this dorm.</p>
-        <h3 className={styles.reviewTitle}>Review Title</h3>
+        <p>Describe your personal experience with this dorm.</p>
+        <h3 className={styles.reviewTitle}>Title</h3>
         <input
           className={styles.reviewTitleInput}
           type="text"
           ref={titleRef}
           placeholder="Give a title for your review"
         />
-        <h3 className={styles.reviewRating}>Review Rating</h3>
+        <h3 className={styles.reviewRating}>Rating</h3>
         <div className={styles.rating}>
           <Rating
             name="hover-feedback"
@@ -141,7 +169,7 @@ const WriteReview: FC = () => {
             <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
           )}
         </div>
-        <h3 className={styles.reviewComment}>Review Comment</h3>
+        <h3 className={styles.reviewComment}>Comment</h3>
         <textarea
           className={styles.reviewCommentInput}
           placeholder="Write a review about your experience..."
@@ -152,9 +180,9 @@ const WriteReview: FC = () => {
         <h2>Authentification</h2>
         <p>Let's verify that you are an SFSU student.</p>
         <h3>SFSU Account</h3>
-        <input type="text" placeholder="jdoe45" />
+        <input ref={sfsuAccountRef} type="text" placeholder="jdoe45" />
         <h3>Code</h3>
-        <input className={styles.code} type="text" placeholder="12345" />
+        <input ref={codeRef} className={styles.code} type="text" placeholder="12345" />
         <Divider flexItem></Divider>
 
         <Button className={styles.submit} variant="contained" type="submit">
