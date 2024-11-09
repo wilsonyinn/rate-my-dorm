@@ -63,7 +63,9 @@ const WriteReview: FC = () => {
         <h1 className={styles.formTitle}>Add a Review</h1>
         <Divider flexItem></Divider>
         <h2>Dorm</h2>
+        <p>Let's gather some details about your dorm.</p>
         <h3 className={styles.reviewDorm}>Dorm Name</h3>
+        <p>Select the dorm you lived in.</p>
         <select className={styles.reviewDormSelect}>
           <option value="">--Select your dorm--</option>
           <option value="manzanita-square">Manzanita Square</option>
@@ -82,7 +84,9 @@ const WriteReview: FC = () => {
           </option>
           <option value="west-grove-common">West Grove Common</option>
         </select>
-        
+
+        <h3>Semester</h3>
+        <p>When did you live in this dorm?</p>
         <select className={styles.semester}>
           <option value="">--Select your semester--</option>
           <option value="fall-2024">Fall 2024</option>
@@ -106,6 +110,9 @@ const WriteReview: FC = () => {
           <option value="winter-2021">Winter 2021</option>
         </select>
 
+        <Divider flexItem></Divider>
+        <h2>Review</h2>
+        <p>Talk about your personal experience with this dorm.</p>
         <h3 className={styles.reviewTitle}>Review Title</h3>
         <input
           className={styles.reviewTitleInput}
@@ -141,6 +148,14 @@ const WriteReview: FC = () => {
           ref={reviewRef}
           maxLength={500}
         />
+        <Divider flexItem></Divider>
+        <h2>Authentification</h2>
+        <p>Let's verify that you are an SFSU student.</p>
+        <h3>SFSU Account</h3>
+        <input type="text" placeholder="jdoe45" />
+        <h3>Code</h3>
+        <input type="text" placeholder="12345" />
+
         <Button className={styles.submit} variant="contained" type="submit">
           Submit
         </Button>
