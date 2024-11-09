@@ -10,6 +10,7 @@ footer {
   font-optical-sizing: auto;
   font-style: normal;
   gap: 30px;
+  background-color: white;
 }
 
 footer span:hover {

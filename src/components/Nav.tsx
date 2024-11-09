@@ -7,13 +7,14 @@ import { useNavigate } from "react-router-dom";
 const Nav = () => {
   const navigate = useNavigate();
 
-  function handleLogInRouting() {
-    navigate("/sign-in");
-  }
-
   function handleHomeRouting() {
     navigate("/");
   }
+
+  function handleReviewRouting() {
+    navigate("/write-review");
+  }
+
   return (
     <nav className={styles.nav}>
       <HouseIcon
@@ -22,11 +23,11 @@ const Nav = () => {
         sx={{ fontSize: 60 }}
       ></HouseIcon>
       <Button
-        onClick={handleLogInRouting}
-        className={styles.login}
+        onClick={handleReviewRouting}
+        className={styles.addReview}
         variant="contained"
       >
-        Log In
+        Write Review
       </Button>
     </nav>
   );

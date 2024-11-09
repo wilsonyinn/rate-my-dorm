@@ -6,13 +6,43 @@
   font-family: "Inter", system-ui;
   font-optical-sizing: auto;
   font-style: normal;
+  background-color: #f3f4f6;
 }
 
-.reviewTitle {
-  font-size: 1.5rem;
+h2 {
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin: 15px 0px 0px 0px;
+}
+
+h3 {
+  font-size: 1.1rem;
   font-weight: 300;
+  margin: 15px 0px 0px 0px;
+}
+
+p {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: gray;
   margin: 5px 0px 5px 0px;
 }
+.formTitle {
+  font-weight: 500;
+}
+
+select {
+  font-size: 1rem;
+  font-weight: 300;
+  width: 18vw;
+  height: 25px;
+  margin: 0px 0px 5px 0px;
+}
+
+.semester {
+  margin-bottom: 20px;
+}
+
 .reviewTitleInput {
   width: 35vw;
   height: 30px;
@@ -21,19 +51,7 @@
   border: none;
   border: solid 1px #8b8b8b;
   padding-left: 6px;
-  margin-bottom: 20px;
-}
-
-.reviewRating {
-  font-size: 1.5rem;
-  font-weight: 300;
-  margin: 5px 0px 5px 0px;
-}
-
-.reviewComment {
-  font-size: 1.5rem;
-  font-weight: 300;
-  margin: 5px 0px 5px 0px;
+  margin: 5px 0px 0px 0px;
 }
 
 .reviewCommentInput {
@@ -48,7 +66,7 @@
   font-family: "Inter", system-ui;
   font-optical-sizing: auto;
   padding: 6px 0px 0px 6px;
-  margin-bottom: 20px;
+  margin: 5px 0px 20px 0px;
 }
 
 .rating {
@@ -56,17 +74,24 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  margin-bottom: 20px;
+  margin: 15px 0px 0px 0px;
 }
 
 .form {
   display: flex;
   flex-direction: column;
   justify-content: start;
+  background-color: white;
   align-items: start;
   margin: 20px 0px 20px 0px;
+  padding: 30px 40px 30px 40px;
 }
 
 .submit {
+  margin: 25git px 0px 0px 0px;
   align-self: flex-end;
+}
+
+.code {
+  margin-bottom: 20px;
 }

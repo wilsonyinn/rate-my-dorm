@@ -74,7 +74,6 @@ const DormPage: FC<DormPageData> = ({ dormName, reviewData }) => {
           width: "100%",
           minHeight: "349px",
         }}
-        // className={styles.banner}
       >
         <h1 className={styles.bannerText}>{dormName}</h1>
       </div>
