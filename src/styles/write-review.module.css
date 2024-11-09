@@ -6,12 +6,31 @@
   font-family: "Inter", system-ui;
   font-optical-sizing: auto;
   font-style: normal;
+  background-color: #f3f4f6;
+}
+
+.formTitle {
+  font-weight: 500;
+}
+
+.reviewDorm {
+  font-size: 1.3rem;
+  font-weight: 300;
+  margin: 15px 0px 0px 0px;
+}
+
+.reviewDormSelect {
+  font-size: 1rem;
+  font-weight: 300;
+  width: 20vw;
+  height: 30px;
+  margin: 15px 0px 0px 0px;
 }
 
 .reviewTitle {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 300;
-  margin: 5px 0px 5px 0px;
+  margin: 15px 0px 0px 0px;
 }
 .reviewTitleInput {
   width: 35vw;
@@ -21,19 +40,19 @@
   border: none;
   border: solid 1px #8b8b8b;
   padding-left: 6px;
-  margin-bottom: 20px;
+  margin: 15px 0px 0px 0px;
 }
 
 .reviewRating {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 300;
-  margin: 5px 0px 5px 0px;
+  margin: 15px 0px 0px 0px;
 }
 
 .reviewComment {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 300;
-  margin: 5px 0px 5px 0px;
+  margin: 15px 0px 0px 0px;
 }
 
 .reviewCommentInput {
@@ -48,7 +67,7 @@
   font-family: "Inter", system-ui;
   font-optical-sizing: auto;
   padding: 6px 0px 0px 6px;
-  margin-bottom: 20px;
+  margin: 15px 0px 15px 0px;
 }
 
 .rating {
@@ -56,17 +75,20 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  margin-bottom: 20px;
+  margin: 15px 0px 0px 0px;
 }
 
 .form {
   display: flex;
   flex-direction: column;
   justify-content: start;
+  background-color: white;
   align-items: start;
   margin: 20px 0px 20px 0px;
+  padding: 30px 40px 30px 40px;
 }
 
 .submit {
+  margin: 15px 0px 0px 0px;
   align-self: flex-end;
 }

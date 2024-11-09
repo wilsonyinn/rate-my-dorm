@@ -10,6 +10,7 @@ import Rating from "@mui/material/Rating";
 import Box from "@mui/material/Box";
 import StarIcon from "@mui/icons-material/Star";
 import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
 
 const labels: { [index: string]: string } = {
   0.5: "0.5",
@@ -34,16 +35,17 @@ const WriteReview: FC = () => {
   const [dormName, setDormName] = useState("Hello");
   const titleRef = useRef<HTMLInputElement | null>(null);
   const reviewRef = useRef<HTMLTextAreaElement | null>(null);
+  const dormRef = useRef<HTMLInputElement | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (location.state && location.state.dormName) {
-      setDormName(location.state.dormName);
-    } else {
-      navigate("/");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (location.state && location.state.dormName) {
+  //     setDormName(location.state.dormName);
+  //   } else {
+  //     navigate("/");
+  //   }
+  // }, []);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -56,8 +58,30 @@ const WriteReview: FC = () => {
   return (
     <div className={styles.container}>
       <Nav />
-      <Banner dormName={dormName} bannerText={`Review ${dormName}`} />
+      {/* <Banner dormName={dormName} bannerText={`Review ${dormName}`} /> */}
       <form className={styles.form} onSubmit={handleSubmit}>
+        <h1 className={styles.formTitle}>Add a Review</h1>
+        <Divider flexItem></Divider>
+        <h2 className={styles.reviewDorm}>Dorm Name</h2>
+        <select className={styles.reviewDormSelect}>
+          <option value="">--Select your dorm--</option>
+          <option value="manzanita-square">Manzanita Square</option>
+          <option value="mary-park-hall">Mary Park Hall</option>
+          <option value="mary-ward-hall">Mary Ward Hall</option>
+          <option value="towers-at-centennial-square">
+            Towers At Centennial Square
+          </option>
+          <option value="towers-at-junior-suites">
+            Towers At Junior Suites
+          </option>
+          <option value="university-park-south">University Park South</option>
+          <option value="university-park-north">University Park North</option>
+          <option value="village-at-centennial-square">
+            Village At Centennial Square
+          </option>
+          <option value="west-grove-common">West Grove Common</option>
+        </select>
+
         <h2 className={styles.reviewTitle}>Review Title</h2>
         <input
           className={styles.reviewTitleInput}
@@ -89,7 +113,7 @@ const WriteReview: FC = () => {
         <h2 className={styles.reviewComment}>Review Comment</h2>
         <textarea
           className={styles.reviewCommentInput}
-          placeholder="Write a helpful review..."
+          placeholder="Write a review about your experience..."
           ref={reviewRef}
           maxLength={500}
         />
