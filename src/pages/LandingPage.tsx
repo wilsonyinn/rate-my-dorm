@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../styles/landing.module.css";
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 //material ui components
 import Card from "@mui/material/Card";
@@ -57,7 +58,7 @@ const LandingPage = () => {
 
   const dormGrid = dorms.map((dorm) => {
     return (
-      <div className={styles.gridItem}>
+      <div className={styles.gridItem} key={uuidv4()}>
         <Link className={styles.link} to={dorm.link}>
           <Card className={styles.card}>
             <CardMedia
