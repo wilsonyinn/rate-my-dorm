@@ -42,42 +42,35 @@ const WriteReview: FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (location.state && location.state.dormName) {
-  //     setDormName(location.state.dormName);
-  //   } else {
-  //     navigate("/");
-  //   }
-  // }, []);
-
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const generatedCode = "54321";
-    
+
     const formData = {
       dormName: dormRef.current?.value,
       semester: semesterRef.current?.value,
       reviewTitle: titleRef.current?.value,
-      reviewRating: {value},
+      reviewRating: value,
       reviewComment: reviewRef.current?.value,
       //dont need these
       // email: sfsuAccountRef.current?.value,
       // code: codeRef.current?.value
-    }
+    };
     try {
-      const response = await fetch('https://api.example.com/reviews', {
-        method: 'POST',
+      const response = await fetch("http://localhost:4000/api/upload-review", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
 
       if (!response.ok) {
-        throw new Error('Failed to submit review');
+        throw new Error("Failed to submit review");
+        alert("Failed to submit review");
       }
 
       const result = await response.json();
+      alert("Successfully submitted");
       // setResponseMessage('Review submitted successfully!');
     } catch (error) {
       // setError(error.message);
@@ -96,46 +89,46 @@ const WriteReview: FC = () => {
         <p>Select the dorm you lived in.</p>
         <select ref={dormRef} className={styles.reviewDormSelect}>
           <option value="">--Select your dorm--</option>
-          <option value="manzanita-square">Manzanita Square</option>
-          <option value="mary-park-hall">Mary Park Hall</option>
-          <option value="mary-ward-hall">Mary Ward Hall</option>
-          <option value="towers-at-centennial-square">
+          <option value="Manzanita Square">Manzanita Square</option>
+          <option value="Mary Park Hall">Mary Park Hall</option>
+          <option value="Mary Ward Hall">Mary Ward Hall</option>
+          <option value="Towers At Centennial Square">
             Towers At Centennial Square
           </option>
-          <option value="towers-at-junior-suites">
+          <option value="Towers At Junior Suites">
             Towers At Junior Suites
           </option>
-          <option value="university-park-south">University Park South</option>
-          <option value="university-park-north">University Park North</option>
-          <option value="village-at-centennial-square">
+          <option value="University Park South">University Park South</option>
+          <option value="University Park North">University Park North</option>
+          <option value="Village At Centennial Square">
             Village At Centennial Square
           </option>
-          <option value="west-grove-common">West Grove Common</option>
+          <option value="West Grove Common">West Grove Common</option>
         </select>
 
         <h3>Semester</h3>
         <p>When did you live in this dorm?</p>
         <select ref={semesterRef} className={styles.semester}>
           <option value="">--Select your semester--</option>
-          <option value="fall-2024">Fall 2024</option>
-          <option value="summer-2024">Summer 2024</option>
-          <option value="spring-2024">Spring 2024</option>
-          <option value="winter-2024">Winter 2024</option>
+          <option value="Fall 2024">Fall 2024</option>
+          <option value="Summer 2024">Summer 2024</option>
+          <option value="Spring 2024">Spring 2024</option>
+          <option value="Winter 2024">Winter 2024</option>
 
-          <option value="fall-2023">Fall 2023</option>
-          <option value="summer-2023">Summer 2023</option>
-          <option value="spring-2023">Spring 2023</option>
-          <option value="winter-2023">Winter 2023</option>
+          <option value="Fall 2023">Fall 2023</option>
+          <option value="Summer 2023">Summer 2023</option>
+          <option value="Spring 2023">Spring 2023</option>
+          <option value="Winter 2023">Winter 2023</option>
 
-          <option value="fall-2022">Fall 2022</option>
-          <option value="summer-2022">Summer 2022</option>
-          <option value="spring-2022">Spring 2022</option>
-          <option value="winter-2022">Winter 2022</option>
+          <option value="Fall 2022">Fall 2022</option>
+          <option value="Summer 2022">Summer 2022</option>
+          <option value="Spring 2022">Spring 2022</option>
+          <option value="Winter 2022">Winter 2022</option>
 
-          <option value="fall-2021">Fall 2021</option>
-          <option value="summer-2021">Summer 2021</option>
-          <option value="spring-2021">Spring 2021</option>
-          <option value="winter-2021">Winter 2021</option>
+          <option value="Fall 2021">Fall 2021</option>
+          <option value="Summer 2021">Summer 2021</option>
+          <option value="Spring 2021">Spring 2021</option>
+          <option value="Winter 2021">Winter 2021</option>
         </select>
 
         <Divider flexItem></Divider>
@@ -182,7 +175,12 @@ const WriteReview: FC = () => {
         <h3>SFSU Account</h3>
         <input ref={sfsuAccountRef} type="text" placeholder="jdoe45" />
         <h3>Code</h3>
-        <input ref={codeRef} className={styles.code} type="text" placeholder="12345" />
+        <input
+          ref={codeRef}
+          className={styles.code}
+          type="text"
+          placeholder="12345"
+        />
         <Divider flexItem></Divider>
 
         <Button className={styles.submit} variant="contained" type="submit">

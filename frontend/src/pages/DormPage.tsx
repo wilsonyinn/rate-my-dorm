@@ -1,4 +1,4 @@
-import React, { useState, FC } from "react";
+import React, { useState, useEffect, FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import styles from "../styles/dormpage.module.css";
@@ -30,20 +30,50 @@ const dormBanners: any = {
 };
 
 interface ReviewData {
-  name: string;
-  datePosted: number;
-  rating: number;
+  userName: string;
+  dormName: string;
+  semester: string;
   reviewTitle: string;
-  review: string;
+  reviewRating: number;
+  reviewComment: string;
 }
 
 interface DormPageData {
   dormName: string;
-  reviewData: ReviewData[];
 }
 
-const DormPage: FC<DormPageData> = ({ dormName, reviewData }) => {
-  const [data, setData] = useState(reviewData);
+const DormPage: FC<DormPageData> = ({ dormName }) => {
+  const [data, setData] = useState<ReviewData[]>([]);
+
+  useEffect(() => {
+    // Function to fetch reviews for a dorm
+    console.log("Use Effect called");
+    console.log(dormName);
+    const fetchReviews = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:4000/api/get-reviews?dormName=${dormName}`,
+          {
+            method: "GET", // POST method to send data
+            headers: {
+              "Content-Type": "application/json", // Ensures data is sent in JSON format
+            },
+          }
+        );
+
+        if (!response.ok) throw new Error("Failed to fetch reviews");
+
+        const data = await response.json();
+        setData(data); // Set the reviews in state
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching reviews:", error);
+      }
+    };
+
+    fetchReviews(); // Call the function on component mount
+  }, [dormName]); // Re-run the effect if dormName changes (if needed)
+
   const navigate = useNavigate();
 
   function handleWriteReviewRouting() {
@@ -53,11 +83,11 @@ const DormPage: FC<DormPageData> = ({ dormName, reviewData }) => {
   const reviews = data.map((val) => {
     return (
       <Review
-        name={val.name}
-        datePosted={val.datePosted}
-        rating={val.rating}
+        userName={val.userName}
+        semester={val.semester}
         reviewTitle={val.reviewTitle}
-        review={val.review}
+        reviewRating={val.reviewRating}
+        reviewComment={val.reviewComment}
         key={uuidv4()}
       />
     );

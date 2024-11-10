@@ -6,46 +6,41 @@ import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 
 interface ReviewProps {
-  name: string;
-  datePosted: number;
-  rating: number;
+  userName: string;
+  semester: string;
   reviewTitle: string;
-  review: string;
+  reviewRating: number;
+  reviewComment: string;
 }
 const Review: FC<ReviewProps> = ({
-  name,
-  datePosted,
-  rating,
+  userName,
+  semester,
   reviewTitle,
-  review,
+  reviewRating,
+  reviewComment,
 }) => {
-  //convert millisecond date to readable data format
-  const date = new Date(datePosted);
-
-  const options: Intl.DateTimeFormatOptions = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  const formattedDate = date.toLocaleDateString("en-US", options);
-
   return (
     <>
       <Divider flexItem></Divider>
       <div className={styles.reviewContainer}>
         <h2 className={styles.nameAndDate}>
-          <h3 className={styles.name}>{name}</h3>
-          <h3 className={styles.date}>{formattedDate}</h3>
+          <h3 className={styles.name}>{userName}</h3>
+          <h3 className={styles.date}>{semester}</h3>
         </h2>
         <div className={styles.rating}>
           <Box sx={{ width: 200, display: "flex", alignItems: "center" }}>
-            <Rating name="read-only" value={rating} precision={0.1} readOnly />
-            <Box sx={{ ml: 2 }}>{rating}</Box>
+            <Rating
+              name="read-only"
+              value={reviewRating}
+              precision={0.1}
+              readOnly
+            />
+            <Box sx={{ ml: 2 }}>{reviewRating}</Box>
           </Box>
         </div>
         <p className={styles.review}>
           <h3>{reviewTitle}</h3>
-          <p>{review}</p>
+          <p>{reviewComment}</p>
         </p>
       </div>
     </>

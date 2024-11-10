@@ -1,7 +1,7 @@
-import React from "react";
 import styles from "../styles/landing.module.css";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import React, { useEffect, useState } from "react";
 
 //material ui components
 import Card from "@mui/material/Card";
@@ -23,7 +23,14 @@ import VCS from "../assets/village-at-centennial-square.jpg";
 import WGC from "../assets/west-grove-common.jpg";
 import Nav from "../components/Nav";
 
+// Define the type for the state
+interface ReviewCounts {
+  [key: string]: number; // Each key is a string (dorm name), and the value is a number (review count)
+}
+
 const LandingPage = () => {
+  const [reviewCounts, setReviewCounts] = useState<ReviewCounts>({});
+
   const dorms = [
     { name: "Manzanita Square", imageSrc: MZSQ, link: "/manzanita-square" },
     { name: "Mary Park Hall", imageSrc: MPW, link: "/mary-park-hall" },
@@ -56,6 +63,24 @@ const LandingPage = () => {
     },
   ];
 
+  useEffect(() => {
+    // Function to fetch review counts
+    const fetchReviewCounts = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:4000/api/get-number-of-reviews"
+        ); // Adjust the URL as needed
+        if (!response.ok) throw new Error("Network response was not ok");
+        const data = await response.json();
+        setReviewCounts(data); // Store the result in state
+      } catch (error) {
+        console.error("Error fetching review counts:", error);
+      }
+    };
+
+    fetchReviewCounts(); // Call the function
+  }, []); // Empty dependency array to ensure it only runs on mount
+
   const dormGrid = dorms.map((dorm) => {
     return (
       <div className={styles.gridItem} key={uuidv4()}>
@@ -67,7 +92,9 @@ const LandingPage = () => {
               title="green iguana"
             />
             <CardContent className={styles.cardContent}>
-              <h2 className={styles.cardName}>{dorm.name}</h2>
+              <h2 className={styles.cardName}>
+                {dorm.name} ({reviewCounts[dorm.name]})
+              </h2>
             </CardContent>
           </Card>
         </Link>

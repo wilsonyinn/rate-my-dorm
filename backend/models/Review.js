@@ -2,6 +2,7 @@
 const mongoose = require("mongoose");
 
 const reviewSchema = new mongoose.Schema({
+  userName: { type: String, requred: true },
   dormName: { type: String, required: true },
   semester: { type: String, required: true },
   reviewTitle: { type: String, required: true },

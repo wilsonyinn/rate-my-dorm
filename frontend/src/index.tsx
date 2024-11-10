@@ -17,52 +17,39 @@ const router = createBrowserRouter([
   },
   {
     path: "/manzanita-square",
-    element: <DormPage dormName="Manzanita Square" reviewData={dummyData} />,
+    element: <DormPage dormName="Manzanita Square" />,
   },
   {
     path: "/university-park-north",
-    element: (
-      <DormPage dormName="University Park North" reviewData={dummyData} />
-    ),
+    element: <DormPage dormName="University Park North" />,
   },
   {
     path: "/towers-at-centennial-square",
-    element: (
-      <DormPage dormName="Towers At Centennial Square" reviewData={dummyData} />
-    ),
+    element: <DormPage dormName="Towers At Centennial Square" />,
   },
   {
     path: "/university-park-south",
-    element: (
-      <DormPage dormName="University Park South" reviewData={dummyData} />
-    ),
+    element: <DormPage dormName="University Park South" />,
   },
   {
     path: "/village-at-centennial-square",
-    element: (
-      <DormPage
-        dormName="Village At Centennial Square"
-        reviewData={dummyData}
-      />
-    ),
+    element: <DormPage dormName="Village At Centennial Square" />,
   },
   {
     path: "/towers-at-junior-suites",
-    element: (
-      <DormPage dormName="Towers At Junior Suites" reviewData={dummyData} />
-    ),
+    element: <DormPage dormName="Towers At Junior Suites" />,
   },
   {
     path: "/mary-ward-hall",
-    element: <DormPage dormName="Mary Ward Hall" reviewData={dummyData} />,
+    element: <DormPage dormName="Mary Ward Hall" />,
   },
   {
     path: "/mary-park-hall",
-    element: <DormPage dormName="Mary Park Hall" reviewData={dummyData} />,
+    element: <DormPage dormName="Mary Park Hall" />,
   },
   {
     path: "/west-grove-common",
-    element: <DormPage dormName="West Grove Common" reviewData={dummyData} />,
+    element: <DormPage dormName="West Grove Common" />,
   },
   {
     path: "/write-review",

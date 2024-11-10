@@ -1,6 +1,7 @@
 // routes/reviews.js
 const express = require("express");
 const router = express.Router();
+const crypto = require("crypto");
 const Review = require("../models/Review");
 
 // POST /upload-review
@@ -20,8 +21,11 @@ router.post("/upload-review", async (req, res) => {
   }
 
   try {
+    const userName =
+      "AnonymousUser" + crypto.randomInt(1000000, 9999999).toString();
     // Create a new review document
     const newReview = new Review({
+      userName,
       dormName,
       semester,
       reviewTitle,
@@ -41,7 +45,8 @@ router.post("/upload-review", async (req, res) => {
 
 // GET /get-reviews
 router.get("/get-reviews", async (req, res) => {
-  const { dormName } = req.body;
+  const { dormName } = req.query;
+  console.log("route reached");
 
   if (!dormName) {
     return res.status(400).json({ error: "dormName is required" });
@@ -50,6 +55,7 @@ router.get("/get-reviews", async (req, res) => {
   try {
     // Find reviews with the specified dormName
     const reviews = await Review.find({ dormName });
+    console.log(reviews);
     res.status(200).json(reviews);
   } catch (error) {
     console.error("Error fetching reviews:", error);
