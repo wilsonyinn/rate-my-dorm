@@ -1,29 +1,66 @@
 // routes/reviews.js
-const express = require('express');
+const express = require("express");
 const router = express.Router();
+const Review = require("../models/Review");
 
 // POST /upload-review
-router.post('/upload-review', (req, res) => {
-  // Implementation will go here
-  res.send('Received review');
-});
+router.post("/upload-review", async (req, res) => {
+  const { dormName, semester, reviewTitle, reviewRating, reviewComment } =
+    req.body;
 
-// GET /send-code
-router.get('/send-code', (req, res) => {
-  // Implementation will go here
-  res.send('Code sent');
+  // Validation (optional)
+  if (
+    !dormName ||
+    !semester ||
+    !reviewTitle ||
+    !reviewRating ||
+    !reviewComment
+  ) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+
+  try {
+    // Create a new review document
+    const newReview = new Review({
+      dormName,
+      semester,
+      reviewTitle,
+      reviewRating,
+      reviewComment,
+    });
+
+    // Save the review document to the database
+    await newReview.save();
+
+    res.status(201).json({ message: "Review uploaded successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to upload review" });
+  }
 });
 
 // GET /get-reviews
-router.get('/get-reviews', (req, res) => {
-  // Implementation will go here
-  res.send('Returning reviews');
+router.get("/get-reviews", async (req, res) => {
+  const { dormName } = req.body;
+
+  if (!dormName) {
+    return res.status(400).json({ error: "dormName is required" });
+  }
+
+  try {
+    // Find reviews with the specified dormName
+    const reviews = await Review.find({ dormName });
+    res.status(200).json(reviews);
+  } catch (error) {
+    console.error("Error fetching reviews:", error);
+    res.status(500).json({ error: "Failed to fetch reviews" });
+  }
 });
 
 // GET /get-number-of-reviews
-router.get('/get-number-of-reviews', (req, res) => {
+router.get("/get-number-of-reviews", (req, res) => {
   // Implementation will go here
-  res.send('Number of reviews');
+  res.send("Number of reviews");
 });
 
 module.exports = router;
