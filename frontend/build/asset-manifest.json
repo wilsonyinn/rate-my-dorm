@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.1dc5693c.css",
+    "main.js": "/static/js/main.44aaae9d.js",
+    "static/js/453.93681f0c.chunk.js": "/static/js/453.93681f0c.chunk.js",
+    "static/media/towers-junior-suite.png": "/static/media/towers-junior-suite.89ce6c5471889693ef82.png",
+    "static/media/towers-at-centennial-square.jpg": "/static/media/towers-at-centennial-square.5a7e56a97bc82f308f28.jpg",
+    "static/media/university-park-north.jpg": "/static/media/university-park-north.1ae9f0c274ad49e298cb.jpg",
+    "static/media/manzanita_banner.jpg": "/static/media/manzanita_banner.0a0e0540b715461caeb9.jpg",
+    "static/media/mary-park-hall.jpg": "/static/media/mary-park-hall.d12f761ba089bdf65a9f.jpg",
+    "static/media/west-grove-common.jpg": "/static/media/west-grove-common.25d87aec8dd782d79b33.jpg",
+    "static/media/university-park-south.jpg": "/static/media/university-park-south.4572d6ac3c45dd1c01ef.jpg",
+    "static/media/sfsu-banner-2.jpeg": "/static/media/sfsu-banner-2.b66c4ba063a33a4f7673.jpeg",
+    "static/media/mary-ward-hall.jpg": "/static/media/mary-ward-hall.8933c35025e2a13ebc0f.jpg",
+    "static/media/village-at-centennial-square.jpg": "/static/media/village-at-centennial-square.d57a01cea152f3162453.jpg",
+    "index.html": "/index.html",
+    "main.1dc5693c.css.map": "/static/css/main.1dc5693c.css.map",
+    "main.44aaae9d.js.map": "/static/js/main.44aaae9d.js.map",
+    "453.93681f0c.chunk.js.map": "/static/js/453.93681f0c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1dc5693c.css",
+    "static/js/main.44aaae9d.js"
+  ]
+}
