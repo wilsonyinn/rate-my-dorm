@@ -32,29 +32,122 @@ function getLabelText(value: number) {
 const WriteReview: FC = () => {
   const [value, setValue] = useState<number | null>(2);
   const [hover, setHover] = useState(-1);
-  const [dormName, setDormName] = useState("Hello");
+  const [verified, setVerified] = useState(false);
+  const [verifiedError, setVerifiedError] = useState(false);
+  const [verifiedErrorMessage, setVerifiedErrorMessage] = useState<
+    string | null
+  >(null);
+  const [verificationSent, setVerificationSent] = useState(false);
+  const [verificationMessage, setVerificationMessage] = useState<string | null>(
+    null
+  );
+  const [verifiedMessage, setVerifiedMessage] = useState<string | null>(null);
+  const [responseMessage, setResponseMessage] = useState<string | null>(null);
+  const [email, setEmail] = useState<string>("");
+  const [code, setCode] = useState<string>("");
   const titleRef = useRef<HTMLInputElement | null>(null);
   const reviewRef = useRef<HTMLTextAreaElement | null>(null);
   const dormRef = useRef<HTMLSelectElement | null>(null);
   const semesterRef = useRef<HTMLSelectElement | null>(null);
-  const sfsuAccountRef = useRef<HTMLInputElement | null>(null);
-  const codeRef = useRef<HTMLInputElement | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
+  async function verifyCode() {
+    if (code === "") {
+      alert("Missing field");
+      return;
+    }
+    const formData = {
+      email: email,
+      code: code,
+    };
+    try {
+      const response = await fetch("http://localhost:4000/api/verify-code", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        setVerified(false);
+        setVerifiedError(true);
+        setVerifiedErrorMessage("Code incorrect.");
+        return;
+      }
+      setVerified(true);
+      setVerifiedError(false);
+      setVerifiedMessage("Verified!");
+    } catch (error: any) {
+      setResponseMessage(error.message);
+    }
+  }
+  async function handleSendVerification() {
+    if (email === "") {
+      alert("Email field missing");
+      return;
+    }
 
     const formData = {
-      dormName: dormRef.current?.value,
-      semester: semesterRef.current?.value,
-      reviewTitle: titleRef.current?.value,
-      reviewRating: value,
-      reviewComment: reviewRef.current?.value,
-      //dont need these
-      // email: sfsuAccountRef.current?.value,
-      // code: codeRef.current?.value
+      email: email,
     };
+    try {
+      const response = await fetch(
+        "http://localhost:4000/api/send-verification",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to send verification");
+        setResponseMessage("Failed to send verification. Try again later!");
+      }
+
+      const result = await response.json();
+      setResponseMessage("Verification sent");
+      setVerificationSent(true);
+      setVerificationMessage("Verification code sent!");
+    } catch (error: any) {
+      setResponseMessage(error.message);
+    }
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!verified) {
+      return "Verify Email";
+    }
+    const dormName = dormRef.current?.value;
+    const semester = semesterRef.current?.value;
+    const reviewTitle = titleRef.current?.value;
+    const reviewRating = value;
+    const reviewComment = reviewRef.current?.value;
+
+    if (
+      dormName === null ||
+      semester === null ||
+      reviewTitle === null ||
+      reviewRating === null ||
+      reviewComment === null
+    ) {
+      setResponseMessage("All fields required");
+      return;
+    }
+
+    const formData = {
+      dormName: dormName,
+      semester: semester,
+      reviewTitle: reviewTitle,
+      reviewRating: reviewRating,
+      reviewComment: reviewComment,
+    };
+
     try {
       const response = await fetch("http://localhost:4000/api/upload-review", {
         method: "POST",
@@ -66,14 +159,15 @@ const WriteReview: FC = () => {
 
       if (!response.ok) {
         throw new Error("Failed to submit review");
-        alert("Failed to submit review");
+        setResponseMessage(
+          "Failed to submit review due to unknown error. Please try again later!"
+        );
       }
 
       const result = await response.json();
-      alert("Successfully submitted");
-      // setResponseMessage('Review submitted successfully!');
-    } catch (error) {
-      // setError(error.message);
+      setResponseMessage("Review submitted successfully!");
+    } catch (error: any) {
+      setResponseMessage(error.message);
     }
   }
 
@@ -171,21 +265,65 @@ const WriteReview: FC = () => {
         />
         <Divider flexItem></Divider>
         <h2>Authentification</h2>
-        <p>Let's verify that you are an SFSU student.</p>
+        <p>
+          Let's verify that you are an SFSU student. We'll send a 6-digit
+          verification code to your SFSU email account. You may need to check
+          your spam box!
+        </p>
         <h3>SFSU Account</h3>
-        <input ref={sfsuAccountRef} type="text" placeholder="jdoe45" />
-        <h3>Code</h3>
-        <input
-          ref={codeRef}
-          className={styles.code}
-          type="text"
-          placeholder="12345"
-        />
-        <Divider flexItem></Divider>
+        <div className={styles.emailBox}>
+          <input
+            className={styles.email}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            placeholder="jdoe45"
+          />
+          <div className={styles.sfsuBox}>@sfsu.edu</div>
+          {!verificationSent && (
+            <Button onClick={handleSendVerification} variant="contained">
+              Send
+            </Button>
+          )}
+          {verificationSent && (
+            <p className={styles.verification}>{verificationMessage}</p>
+          )}
+        </div>
+        {verificationSent && (
+          <>
+            {" "}
+            <h3>Code</h3>
+            <div className={styles.emailBox}>
+              <input
+                value={code}
+                onChange={(e) => setCode(e.target.value)}
+                className={styles.code}
+                type="text"
+                placeholder="123456"
+              />
+              {verifiedError && (
+                <p className={styles.error}>{verifiedErrorMessage}</p>
+              )}
+              {verified && (
+                <p className={styles.verification}>{verifiedMessage}</p>
+              )}
+              {verificationSent && !verified && (
+                <Button variant="contained" onClick={verifyCode}>
+                  Verify
+                </Button>
+              )}
+            </div>
+          </>
+        )}
 
-        <Button className={styles.submit} variant="contained" type="submit">
-          Submit
-        </Button>
+        {verified && (
+          <>
+            <Divider flexItem></Divider>
+            <Button className={styles.submit} variant="contained" type="submit">
+              Submit
+            </Button>
+          </>
+        )}
       </form>
       <Footer />
     </div>

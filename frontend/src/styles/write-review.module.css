@@ -77,8 +77,45 @@ select {
   margin: 15px 0px 0px 0px;
 }
 
+.emailBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.email {
+  width: 11vw;
+  height: 30px;
+  font-size: 0.9rem;
+  border-radius: 5px 0px 0px 5px;
+  border: none;
+  border: solid 1px #8b8b8b;
+  padding-left: 6px;
+  z-index: 1;
+}
+
+.sfsuBox {
+  background-color: rgb(237, 237, 237);
+  width: 8vw;
+  height: 30px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  border: solid 1px #8b8b8b;
+  position: relative;
+  right: 8px;
+  z-index: 0;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 30px;
+}
+
 .form {
   display: flex;
+  max-width: 50vw;
   flex-direction: column;
   justify-content: start;
   background-color: white;
@@ -94,4 +131,19 @@ select {
 
 .code {
   margin-bottom: 20px;
+  width: 11vw;
+  height: 30px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  border: none;
+  border: solid 1px #8b8b8b;
+  padding-left: 6px;
+}
+
+.verification {
+  color: green;
+}
+
+.error {
+  color: red;
 }

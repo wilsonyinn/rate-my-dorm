@@ -14,18 +14,9 @@ const Footer = () => {
     navigate("/");
   }
 
-  function RedirectAboutUs() {
-    navigate("/about-us");
-  }
-
   return (
     <footer>
-      <span onClick={RedirectHome} className={styles.home}>
-        Home
-      </span>
-      <span onClick={RedirectAboutUs} className={styles.about}>
-        About
-      </span>
+      <span onClick={RedirectHome}>&reg;SFSU Dorms</span>
       <span onClick={RedirectContactUs} className={styles.contact}>
         Contact Us
       </span>

@@ -18,7 +18,6 @@ const transporter = nodemailer.createTransport({
 // POST /send-code
 router.post("/send-verification", async (req, res) => {
   const { email } = req.body;
-  console.log(email);
 
   // Generate a random 6-digit code
   const verificationCode = crypto.randomInt(100000, 999999).toString();
