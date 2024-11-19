@@ -23,13 +23,12 @@ import VCS from "../assets/village-at-centennial-square.jpg";
 import WGC from "../assets/west-grove-common.jpg";
 import Nav from "../components/Nav";
 
-// Define the type for the state
-interface ReviewCounts {
-  [key: string]: number; // Each key is a string (dorm name), and the value is a number (review count)
+interface AverageRatings {
+  [key: string]: number;
 }
 
 const LandingPage = () => {
-  const [reviewCounts, setReviewCounts] = useState<ReviewCounts>({});
+  const [averageRatings, setAverageRatings] = useState<AverageRatings>({});
 
   const dorms = [
     { name: "Manzanita Square", imageSrc: MZSQ, link: "/manzanita-square" },
@@ -64,22 +63,27 @@ const LandingPage = () => {
   ];
 
   useEffect(() => {
-    // Function to fetch review counts
-    const fetchReviewCounts = async () => {
+    // Fetch the average ratings when the component mounts
+    const fetchAverageRatings = async () => {
       try {
         const response = await fetch(
-          "http://localhost:4000/api/get-number-of-reviews"
-        ); // Adjust the URL as needed
-        if (!response.ok) throw new Error("Network response was not ok");
+          "http://localhost:4000/api/average-ratings"
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch average ratings");
+        }
+
         const data = await response.json();
-        setReviewCounts(data); // Store the result in state
+        console.log(data);
+        setAverageRatings(data); // Store the data in the state
+        console.log(averageRatings);
       } catch (error) {
-        console.error("Error fetching review counts:", error);
+        console.error(error); // Handle any errors that occur during the fetch
       }
     };
 
-    fetchReviewCounts(); // Call the function
-  }, []); // Empty dependency array to ensure it only runs on mount
+    fetchAverageRatings(); // Call the function to fetch data
+  }, []); // Empty dependency array means this effect runs only once when the component mounts
 
   const dormGrid = dorms.map((dorm) => {
     return (
@@ -93,7 +97,7 @@ const LandingPage = () => {
             />
             <CardContent className={styles.cardContent}>
               <h2 className={styles.cardName}>
-                {dorm.name} ({reviewCounts[dorm.name]})
+                {dorm.name} ({averageRatings[dorm.name]})
               </h2>
             </CardContent>
           </Card>

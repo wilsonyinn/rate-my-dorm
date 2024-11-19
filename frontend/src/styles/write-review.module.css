@@ -145,5 +145,6 @@ select {
 }
 
 .error {
-  color: red;
+  color: #d8000c; /* Bright red for text */
+  font-weight: bold; /* Emphasizes the text */
 }

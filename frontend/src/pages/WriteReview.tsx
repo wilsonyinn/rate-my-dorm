@@ -32,6 +32,10 @@ function getLabelText(value: number) {
 const WriteReview: FC = () => {
   const [value, setValue] = useState<number | null>(2);
   const [hover, setHover] = useState(-1);
+  const [dormErrorMessage, setDormErrorMessage] = useState<string | null>(null);
+  const [reviewErrorMessage, setReviewErrorMessage] = useState<string | null>(
+    null
+  );
   const [verified, setVerified] = useState(false);
   const [verifiedError, setVerifiedError] = useState(false);
   const [verifiedErrorMessage, setVerifiedErrorMessage] = useState<
@@ -52,6 +56,9 @@ const WriteReview: FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  /*********************************
+   * VERIFY CODE API CALL
+   *********************************/
   async function verifyCode() {
     if (code === "") {
       alert("Missing field");
@@ -83,6 +90,10 @@ const WriteReview: FC = () => {
       setResponseMessage(error.message);
     }
   }
+
+  /*********************************
+   * SEND VERIFICATION API CALL
+   *********************************/
   async function handleSendVerification() {
     if (email === "") {
       alert("Email field missing");
@@ -105,8 +116,8 @@ const WriteReview: FC = () => {
       );
 
       if (!response.ok) {
-        throw new Error("Failed to send verification");
         setResponseMessage("Failed to send verification. Try again later!");
+        return;
       }
 
       const result = await response.json();
@@ -118,26 +129,38 @@ const WriteReview: FC = () => {
     }
   }
 
+  /**********************************
+   * SUBMIT FORM
+   *********************************/
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!verified) {
-      return "Verify Email";
-    }
+
     const dormName = dormRef.current?.value;
     const semester = semesterRef.current?.value;
     const reviewTitle = titleRef.current?.value;
     const reviewRating = value;
     const reviewComment = reviewRef.current?.value;
 
-    if (
-      dormName === null ||
-      semester === null ||
-      reviewTitle === null ||
-      reviewRating === null ||
-      reviewComment === null
-    ) {
-      setResponseMessage("All fields required");
+    if (dormName === "" || semester === "") {
+      setDormErrorMessage("⚠️ Select a dorm and semester");
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
       return;
+    } else {
+      setDormErrorMessage(null);
+    }
+
+    if (reviewTitle === "" || reviewComment === "") {
+      setReviewErrorMessage("⚠️ Fill in review fields");
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      return;
+    } else {
+      setDormErrorMessage(null);
     }
 
     const formData = {
@@ -158,10 +181,10 @@ const WriteReview: FC = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to submit review");
         setResponseMessage(
           "Failed to submit review due to unknown error. Please try again later!"
         );
+        return;
       }
 
       const result = await response.json();
@@ -179,6 +202,7 @@ const WriteReview: FC = () => {
         <Divider flexItem></Divider>
         <h2>Dorm</h2>
         <p>Let's gather some details about your dorm.</p>
+        {dormErrorMessage && <p className={styles.error}>{dormErrorMessage}</p>}
         <h3 className={styles.reviewDorm}>Dorm Name</h3>
         <p>Select the dorm you lived in.</p>
         <select ref={dormRef} className={styles.reviewDormSelect}>
@@ -228,6 +252,9 @@ const WriteReview: FC = () => {
         <Divider flexItem></Divider>
         <h2>Review</h2>
         <p>Describe your personal experience with this dorm.</p>
+        {reviewErrorMessage && (
+          <p className={styles.error}>{reviewErrorMessage}</p>
+        )}
         <h3 className={styles.reviewTitle}>Title</h3>
         <input
           className={styles.reviewTitleInput}
@@ -263,6 +290,7 @@ const WriteReview: FC = () => {
           ref={reviewRef}
           maxLength={500}
         />
+
         <Divider flexItem></Divider>
         <h2>Authentification</h2>
         <p>

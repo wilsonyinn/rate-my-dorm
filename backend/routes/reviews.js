@@ -87,4 +87,62 @@ router.get("/get-number-of-reviews", async (req, res) => {
   }
 });
 
+// API Endpoint to add multiple reviews
+router.post("/add-reviews", async (req, res) => {
+  try {
+    const reviews = req.body; // Expecting an array of review objects
+    if (!Array.isArray(reviews) || reviews.length === 0) {
+      return res.status(400).json({ message: "Invalid or empty data" });
+    }
+
+    // Insert all reviews into the database
+    const result = await Review.insertMany(reviews);
+    res.status(201).json({
+      message: "Reviews added successfully",
+      addedReviews: result,
+    });
+  } catch (error) {
+    console.error("Error adding reviews:", error);
+    res
+      .status(500)
+      .json({ message: "Error adding reviews", error: error.message });
+  }
+});
+
+// Endpoint to calculate average rating for each dorm
+router.get("/average-ratings", async (req, res) => {
+  console.log("endpoint reached");
+  try {
+    const averages = await Review.aggregate([
+      {
+        $group: {
+          _id: "$dormName",
+          averageRating: { $avg: "$reviewRating" },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          dormName: "$_id",
+          averageRating: { $round: ["$averageRating", 1] }, // Round to 1 decimal place
+        },
+      },
+    ]);
+
+    // Convert the result to the desired format
+    const result = averages.reduce((acc, { dormName, averageRating }) => {
+      acc.push({ [dormName]: averageRating });
+      return acc;
+    }, []);
+
+    res.status(200).json(result);
+  } catch (error) {
+    console.error("Error calculating average ratings:", error);
+    res.status(500).json({
+      message: "Error calculating average ratings",
+      error: error.message,
+    });
+  }
+});
+
 module.exports = router;

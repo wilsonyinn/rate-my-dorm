@@ -21,6 +21,7 @@ router.post("/send-verification", async (req, res) => {
 
   // Generate a random 6-digit code
   const verificationCode = crypto.randomInt(100000, 999999).toString();
+  console.log(verificationCode);
   verificationCodes[email] = verificationCode; // Store the code temporarily
   // Send email
   try {
