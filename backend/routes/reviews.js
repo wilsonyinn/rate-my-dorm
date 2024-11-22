@@ -129,11 +129,11 @@ router.get("/average-ratings", async (req, res) => {
       },
     ]);
 
-    // Convert the result to the desired format
+    // Convert the result to an object format
     const result = averages.reduce((acc, { dormName, averageRating }) => {
-      acc.push({ [dormName]: averageRating });
+      acc[dormName] = averageRating;
       return acc;
-    }, []);
+    }, {});
 
     res.status(200).json(result);
   } catch (error) {

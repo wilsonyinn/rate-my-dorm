@@ -23,12 +23,11 @@ import VCS from "../assets/village-at-centennial-square.jpg";
 import WGC from "../assets/west-grove-common.jpg";
 import Nav from "../components/Nav";
 
-interface AverageRatings {
+interface DormRatings {
   [key: string]: number;
 }
-
 const LandingPage = () => {
-  const [averageRatings, setAverageRatings] = useState<AverageRatings>({});
+  const [averageRatings, setAverageRatings] = useState<DormRatings>({});
 
   const dorms = [
     { name: "Manzanita Square", imageSrc: MZSQ, link: "/manzanita-square" },
